@@ -122,6 +122,9 @@ class App extends Component {
       this.setState({ [player]: this.state[player] + 1 });
       this.reset();
     }
+    else if (this.state.grid0[1] && this.state.grid1[1] && this.state.grid2[1] && this.state.grid3[1] && this.state.grid4[1] && this.state.grid5[1] && this.state.grid6[1] && this.state.grid7[1] && this.state.grid8[1]) {
+      this.reset();
+    }
   }
 }
 
