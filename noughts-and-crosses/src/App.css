@@ -1,0 +1,30 @@
+.title, .player1, .player2, .turn{
+  font-family: 'Gamja Flower', cursive;
+  text-align: center;
+}
+
+.score{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-around;
+}
+
+.grid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.grid .one, .two, .three, .four, .five, .six, .seven, .eight, .nine{
+  width: 30%;
+  height: 130px;
+  background: green;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.play{
+  display: flex;
+  justify-content: center;
+}
