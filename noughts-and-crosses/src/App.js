@@ -6,7 +6,7 @@ class App extends Component {
   state = {
     player1: 0,
     player2: 0,
-    turn: "Player 1",
+    turn: "player 1",
     game: false,
     grid0: [false, ''],
     grid1: [false, ''],
@@ -20,18 +20,8 @@ class App extends Component {
     zeroOrCross: 'O'
   }
 
-  start = () => { this.setState({ game: true }) }
-
-
-  play = (grid) => {
-    this.state.zeroOrCross === 'X' ? this.setState({ zeroOrCross: 'O' }) : this.setState({ zeroOrCross: 'X' });
-    if (this.state.game && !this.state[grid][0]) {
-      this.setState({ [grid]: [true, this.state.zeroOrCross] });
-      this.state.turn === 'Player 1' ? this.setState({ turn: 'Player 2' }) : this.setState({ turn: 'Player 1' });
-    }
-  }
-
   render() {
+    this.check();
     return (
       <div className="App">
         <h1 className="title">Noughts And Crosses</h1>
@@ -61,6 +51,77 @@ class App extends Component {
         </div>
       </div>
     );
+  }
+
+  start = () => { this.setState({ game: true }) }
+
+  play = (grid) => {
+    this.state.zeroOrCross === 'X' ? this.setState({ zeroOrCross: 'O' }) : this.setState({ zeroOrCross: 'X' });
+    if (this.state.game && !this.state[grid][0]) {
+      this.setState({ [grid]: [true, this.state.zeroOrCross] });
+      this.state.turn === 'player 1' ? this.setState({ turn: 'player 2' }) : this.setState({ turn: 'player 1' })
+    }
+  }
+
+  reset = () => {
+    this.setState({
+      grid0: [false, ''],
+      grid1: [false, ''],
+      grid2: [false, ''],
+      grid3: [false, ''],
+      grid4: [false, ''],
+      grid5: [false, ''],
+      grid6: [false, ''],
+      grid7: [false, ''],
+      grid8: [false, ''],
+      zeroOrCross: 'O'
+    })
+  }
+
+  check = () => {
+
+    let player = this.state.turn.replace(/\s/g,'');
+    player==="player1" ? player = "player2" : player = "player1"; 
+
+    if (this.state.grid0[1] && this.state.grid0[1] === this.state.grid1[1] && this.state.grid0[1] === this.state.grid2[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
+
+    else if (this.state.grid3[1] && this.state.grid3[1] === this.state.grid4[1] && this.state.grid3[1] === this.state.grid5[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
+
+    else if (this.state.grid6[1] && this.state.grid6[1] === this.state.grid7[1] && this.state.grid6[1] === this.state.grid8[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
+
+    else if (this.state.grid0[1] && this.state.grid0[1] === this.state.grid4[1] && this.state.grid0[1] === this.state.grid8[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
+
+    else if (this.state.grid6[1] && this.state.grid6[1] === this.state.grid4[1] && this.state.grid6[1] === this.state.grid2[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
+
+    else if (this.state.grid0[1] && this.state.grid0[1] === this.state.grid3[1] && this.state.grid0[1] === this.state.grid6[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
+
+    else if (this.state.grid1[1] && this.state.grid1[1] === this.state.grid4[1] && this.state.grid1[1] === this.state.grid7[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
+
+    else if (this.state.grid2[1] && this.state.grid2[1] === this.state.grid5[1] && this.state.grid2[1] === this.state.grid8[1]) {
+      this.setState({ [player]: this.state[player] + 1 });
+      this.reset();
+    }
   }
 }
 
